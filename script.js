@@ -35,19 +35,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Display feedback
         feedbackDiv.innerHTML = ''; // Clear previous messages
+        feedbackDiv.style.display = 'block'; // Make feedback visible
         
         if (isValid) {
             feedbackDiv.textContent = 'Registration successful!';
-            feedbackDiv.className = 'success';
+            feedbackDiv.style.color = '#28a745'; // Green color for success
             // Here you could submit the form to a server if needed
             // form.submit();
         } else {
-            feedbackDiv.className = 'error';
-            messages.forEach(message => {
-                const p = document.createElement('p');
-                p.textContent = message;
-                feedbackDiv.appendChild(p);
-            });
+            feedbackDiv.innerHTML = messages.join('<br>'); // Join messages with line breaks
+            feedbackDiv.style.color = '#dc3545'; // Red color for errors
         }
     });
 });

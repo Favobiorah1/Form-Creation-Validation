@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Select the form and feedback div
-    const form = document.getElementById('myForm');
+    const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
 
     form.addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent form submission
+        event.preventDefault(); // Prevent default form submission
 
-        // Get input values and trim whitespace
+        // Get and trim input values
         const username = document.getElementById('username').value.trim();
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value.trim();
@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Email validation (must contain @ and .)
         if (!email.includes('@') || !email.includes('.')) {
             isValid = false;
-            messages.push('Email must contain @ and . characters.');
+            messages.push('Please enter a valid email address (must contain @ and .).');
         }
 
         // Password validation (min 8 characters)
@@ -35,12 +35,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Display feedback
         feedbackDiv.innerHTML = ''; // Clear previous messages
-        feedbackDiv.className = ''; // Reset class
-
+        
         if (isValid) {
-            feedbackDiv.textContent = 'Form submitted successfully!';
+            feedbackDiv.textContent = 'Registration successful!';
             feedbackDiv.className = 'success';
-            // Here you could actually submit the form to a server
+            // Here you could submit the form to a server if needed
             // form.submit();
         } else {
             feedbackDiv.className = 'error';

@@ -15,19 +15,24 @@ async function fetchUserData() {
         // Clear the loading message
         dataContainer.innerHTML = '';
 
-        // Display each user's name
+        // Create a <ul> to hold user names
+        const userList = document.createElement('ul');
+
+        // Loop through users and create <li> for each
         users.forEach(user => {
-            const userElement = document.createElement('p');
-            userElement.textContent = user.name;
-            dataContainer.appendChild(userElement);
+            const listItem = document.createElement('li');
+            listItem.textContent = user.name;
+            userList.appendChild(listItem);
         });
 
+        // Append the <ul> to the container
+        dataContainer.appendChild(userList);
+
     } catch (error) {
-        // Handle fetch errors
         dataContainer.textContent = 'Failed to load user data. Please try again later.';
         console.error('Fetch error:', error);
     }
 }
 
-// Call fetchUserData when DOM is fully loaded
+// Invoke on DOMContentLoaded
 document.addEventListener('DOMContentLoaded', fetchUserData);
